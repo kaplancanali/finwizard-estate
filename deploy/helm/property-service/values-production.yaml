@@ -1,0 +1,46 @@
+environment: production
+
+config:
+  appEnv: production
+  logLevel: INFO
+  debug: false
+  requireAuthentication: true
+  corsOrigins: '["https://app.finward.com"]'
+
+api:
+  replicaCount: 3
+  autoscaling:
+    enabled: true
+    minReplicas: 3
+    maxReplicas: 20
+
+workers:
+  default:
+    autoscaling:
+      enabled: true
+      minReplicas: 2
+      maxReplicas: 10
+  image:
+    autoscaling:
+      enabled: true
+      minReplicas: 1
+      maxReplicas: 5
+  import:
+    autoscaling:
+      enabled: true
+      minReplicas: 1
+      maxReplicas: 3
+
+ingress:
+  hosts:
+    - host: property.finward.com
+      paths:
+        - path: /
+          pathType: Prefix
+  tls:
+    - secretName: property-service-tls
+      hosts:
+        - property.finward.com
+
+dataResidency:
+  region: eu-central-1

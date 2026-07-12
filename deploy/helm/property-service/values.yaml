@@ -1,0 +1,180 @@
+# Default values — override per environment (values-dev.yaml, values-staging.yaml, values-production.yaml)
+
+global:
+  imageRegistry: ""
+  imagePullSecrets: []
+
+nameOverride: ""
+fullnameOverride: ""
+
+image:
+  repository: property-service
+  tag: latest
+  pullPolicy: IfNotPresent
+
+workerImage:
+  repository: property-service-worker
+  tag: latest
+  pullPolicy: IfNotPresent
+
+environment: production
+
+config:
+  appEnv: production
+  logLevel: INFO
+  debug: false
+  runMigrations: false
+  seedLookups: false
+  requireAuthentication: true
+  corsOrigins: '["https://app.finward.com"]'
+  rateLimitPerMinute: 600
+
+secrets:
+  # Set via --set-file or external secret manager in production
+  databaseUrl: ""
+  redisUrl: ""
+  rabbitmqUrl: ""
+  jwtSecret: ""
+  s3AccessKey: ""
+  s3SecretKey: ""
+
+s3:
+  endpoint: ""
+  bucket: property-media
+  region: eu-central-1
+
+api:
+  replicaCount: 3
+  port: 8000
+  resources:
+    requests:
+      cpu: 500m
+      memory: 512Mi
+    limits:
+      cpu: 2000m
+      memory: 1Gi
+  autoscaling:
+    enabled: true
+    minReplicas: 3
+    maxReplicas: 20
+    targetCPUUtilizationPercentage: 70
+  rollingUpdate:
+    maxUnavailable: 0
+    maxSurge: 1
+  preStopSleepSeconds: 15
+  probes:
+    liveness:
+      path: /health
+      initialDelaySeconds: 10
+      periodSeconds: 15
+    readiness:
+      path: /health/ready
+      initialDelaySeconds: 5
+      periodSeconds: 10
+    startup:
+      path: /health/startup
+      initialDelaySeconds: 5
+      periodSeconds: 5
+      failureThreshold: 30
+
+workers:
+  default:
+    enabled: true
+    replicaCount: 2
+    queues: "property.default,property.outbox,property.geocoding,property.sync,property.maintenance"
+    concurrency: 4
+    autoscaling:
+      enabled: true
+      minReplicas: 2
+      maxReplicas: 10
+      queueName: property.default
+      targetQueueDepth: 100
+    resources:
+      requests:
+        cpu: 500m
+        memory: 512Mi
+      limits:
+        cpu: 1000m
+        memory: 1Gi
+  image:
+    enabled: true
+    replicaCount: 1
+    queues: property.image
+    concurrency: 2
+    autoscaling:
+      enabled: true
+      minReplicas: 1
+      maxReplicas: 5
+      queueName: property.image
+      targetQueueDepth: 20
+    resources:
+      requests:
+        cpu: 1000m
+        memory: 1Gi
+      limits:
+        cpu: 2000m
+        memory: 2Gi
+  import:
+    enabled: true
+    replicaCount: 1
+    queues: property.import
+    concurrency: 2
+    autoscaling:
+      enabled: true
+      minReplicas: 1
+      maxReplicas: 3
+      queueName: property.import
+      targetQueueDepth: 5
+    resources:
+      requests:
+        cpu: 500m
+        memory: 512Mi
+      limits:
+        cpu: 1000m
+        memory: 1Gi
+
+beat:
+  enabled: true
+  replicaCount: 1
+
+migrate:
+  enabled: true
+  backoffLimit: 3
+
+ingress:
+  enabled: true
+  className: nginx
+  annotations:
+    nginx.ingress.kubernetes.io/rate-limit: "100"
+  hosts:
+    - host: property.finward.com
+      paths:
+        - path: /
+          pathType: Prefix
+  tls:
+    - secretName: property-service-tls
+      hosts:
+        - property.finward.com
+
+serviceAccount:
+  create: true
+  name: ""
+
+podSecurityContext:
+  runAsNonRoot: true
+  runAsUser: 1000
+  fsGroup: 1000
+
+networkPolicy:
+  enabled: false
+
+monitoring:
+  serviceMonitor:
+    enabled: true
+    interval: 30s
+    path: /metrics
+  prometheusRules:
+    enabled: true
+
+dataResidency:
+  region: eu-central-1

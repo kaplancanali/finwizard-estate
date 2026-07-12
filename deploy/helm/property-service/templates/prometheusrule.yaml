@@ -1,0 +1,43 @@
+{{- if .Values.monitoring.prometheusRules.enabled }}
+apiVersion: monitoring.coreos.com/v1
+kind: PrometheusRule
+metadata:
+  name: {{ include "property-service.fullname" . }}-alerts
+  labels:
+    {{- include "property-service.labels" . | nindent 4 }}
+spec:
+  groups:
+    - name: property-service
+      rules:
+        - alert: PropertyServiceHighErrorRate
+          expr: |
+            sum(rate(http_requests_total{job="property-service",status=~"5.."}[5m]))
+            / sum(rate(http_requests_total{job="property-service"}[5m])) > 0.01
+          for: 5m
+          labels:
+            severity: critical
+          annotations:
+            summary: API 5xx error rate above 1%
+        - alert: PropertyServiceHighLatency
+          expr: |
+            histogram_quantile(0.99, sum(rate(http_request_duration_seconds_bucket{job="property-service"}[5m])) by (le)) > 2
+          for: 5m
+          labels:
+            severity: warning
+          annotations:
+            summary: API p99 latency above 2s
+        - alert: PropertyServiceCeleryDLQ
+          expr: celery_dlq_size > 0
+          for: 1m
+          labels:
+            severity: critical
+          annotations:
+            summary: Celery dead-letter queue has messages
+        - alert: PropertyServiceOutboxBacklog
+          expr: outbox_pending_events > 1000
+          for: 10m
+          labels:
+            severity: warning
+          annotations:
+            summary: Outbox backlog exceeds 1000 pending events
+{{- end }}

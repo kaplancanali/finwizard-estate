@@ -1,0 +1,22 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ include "property-service.fullname" . }}-config
+  labels:
+    {{- include "property-service.labels" . | nindent 4 }}
+data:
+  APP_NAME: property-service
+  APP_ENV: {{ .Values.config.appEnv | quote }}
+  LOG_LEVEL: {{ .Values.config.logLevel | quote }}
+  DEBUG: {{ .Values.config.debug | quote }}
+  RUN_MIGRATIONS: {{ .Values.config.runMigrations | quote }}
+  SEED_LOOKUPS: {{ .Values.config.seedLookups | quote }}
+  REQUIRE_AUTHENTICATION: {{ .Values.config.requireAuthentication | quote }}
+  CORS_ORIGINS: {{ .Values.config.corsOrigins | quote }}
+  RATE_LIMIT_PER_MINUTE: {{ .Values.config.rateLimitPerMinute | quote }}
+  S3_BUCKET: {{ .Values.s3.bucket | quote }}
+  S3_REGION: {{ .Values.s3.region | quote }}
+  {{- if .Values.s3.endpoint }}
+  S3_ENDPOINT: {{ .Values.s3.endpoint | quote }}
+  {{- end }}
+  DATA_RESIDENCY_REGION: {{ .Values.dataResidency.region | quote }}

@@ -1,0 +1,34 @@
+# Production override — use with:
+#   docker compose -f docker/docker-compose.yml -f docker/docker-compose.prod.yml up -d
+
+services:
+  api:
+    build:
+      target: runtime
+    restart: always
+    deploy:
+      replicas: 3
+      resources:
+        limits:
+          cpus: "2"
+          memory: 1G
+    environment:
+      APP_ENV: production
+      DEBUG: "false"
+      LOG_LEVEL: INFO
+      RUN_MIGRATIONS: "false"
+      SEED_LOOKUPS: "false"
+    volumes: !reset []
+    command: >
+      uvicorn property_service.main:app
+      --host 0.0.0.0 --port 8000 --workers 4
+
+  worker:
+    restart: always
+    deploy:
+      replicas: 2
+    volumes: !reset []
+
+  beat:
+    restart: always
+    volumes: !reset []

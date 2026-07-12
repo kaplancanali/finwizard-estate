@@ -1,0 +1,66 @@
+[project]
+name = "property-service"
+version = "0.1.0"
+description = "FINWARD Property Service — central domain SSOT for real estate assets"
+readme = "README.md"
+requires-python = ">=3.9"
+dependencies = [
+    "fastapi>=0.115",
+    "uvicorn[standard]>=0.32",
+    "pydantic>=2.10",
+    "pydantic-settings>=2.6",
+    "sqlalchemy[asyncio]>=2.0.36",
+    "asyncpg>=0.30",
+    "aiosqlite>=0.20",
+    "alembic>=1.14",
+    "redis[hiredis]>=5.2",
+    "httpx>=0.28",
+    "python-jose[cryptography]>=3.3",
+    "passlib>=1.7",
+    "structlog>=24.4",
+    "opentelemetry-api>=1.28",
+    "opentelemetry-sdk>=1.28",
+    "opentelemetry-instrumentation-fastapi>=0.49",
+    "prometheus-client>=0.21",
+    "eval-type-backport>=0.2",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.3",
+    "pytest-asyncio>=0.24",
+    "pytest-cov>=6.0",
+    "testcontainers>=4.8",
+    "factory-boy>=3.3",
+    "ruff>=0.8",
+    "mypy>=1.13",
+    "aiosqlite>=0.20",
+    "httpx>=0.28",
+    "celery>=5.4",
+]
+geo = ["geoalchemy2>=0.15"]
+worker = ["celery>=5.4", "aio-pika>=9.4", "aioboto3>=13.0"]
+all = ["property-service[dev,geo,worker]"]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/property_service"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]
+asyncio_mode = "auto"
+
+[tool.ruff]
+target-version = "py39"
+src = ["src", "tests"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B", "SIM"]
+
+[tool.mypy]
+python_version = "3.9"
+packages = ["property_service"]

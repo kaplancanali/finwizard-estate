@@ -1,0 +1,49 @@
+{{- range $name, $worker := .Values.workers }}
+{{- if $worker.enabled }}
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "property-service.fullname" $ }}-worker-{{ $name }}
+  labels:
+    {{- include "property-service.labels" $ | nindent 4 }}
+    app.kubernetes.io/component: worker
+    worker-queue: {{ $name }}
+spec:
+  replicas: {{ $worker.replicaCount }}
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: {{ include "property-service.name" $ }}
+      app.kubernetes.io/instance: {{ $.Release.Name }}
+      app.kubernetes.io/component: worker
+      worker-queue: {{ $name }}
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: {{ include "property-service.name" $ }}
+        app.kubernetes.io/instance: {{ $.Release.Name }}
+        app.kubernetes.io/component: worker
+        worker-queue: {{ $name }}
+    spec:
+      serviceAccountName: {{ default (include "property-service.fullname" $) $.Values.serviceAccount.name }}
+      securityContext:
+        {{- toYaml $.Values.podSecurityContext | nindent 8 }}
+      containers:
+        - name: worker
+          image: {{ include "property-service.image" (dict "Values" $.Values.workerImage "Chart" $.Chart "Release" $.Release "global" $.Values.global) }}
+          imagePullPolicy: {{ $.Values.workerImage.pullPolicy }}
+          envFrom:
+            {{- include "property-service.envFrom" $ | nindent 12 }}
+          resources:
+            {{- toYaml $worker.resources | nindent 12 }}
+          command:
+            - celery
+            - -A
+            - property_service.infrastructure.celery.app
+            - worker
+            - --loglevel=info
+            - -Q
+            - {{ $worker.queues }}
+            - --concurrency={{ $worker.concurrency }}
+{{- end }}
+{{- end }}

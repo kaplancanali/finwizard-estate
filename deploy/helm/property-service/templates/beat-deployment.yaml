@@ -1,0 +1,38 @@
+{{- if .Values.beat.enabled }}
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "property-service.fullname" . }}-beat
+  labels:
+    {{- include "property-service.labels" . | nindent 4 }}
+    app.kubernetes.io/component: beat
+spec:
+  replicas: {{ .Values.beat.replicaCount }}
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: {{ include "property-service.name" . }}
+      app.kubernetes.io/instance: {{ .Release.Name }}
+      app.kubernetes.io/component: beat
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: {{ include "property-service.name" . }}
+        app.kubernetes.io/instance: {{ .Release.Name }}
+        app.kubernetes.io/component: beat
+    spec:
+      serviceAccountName: {{ default (include "property-service.fullname" .) .Values.serviceAccount.name }}
+      securityContext:
+        {{- toYaml .Values.podSecurityContext | nindent 8 }}
+      containers:
+        - name: beat
+          image: {{ include "property-service.image" (dict "Values" .Values.workerImage "Chart" .Chart "Release" .Release "global" .Values.global) }}
+          imagePullPolicy: {{ .Values.workerImage.pullPolicy }}
+          envFrom:
+            {{- include "property-service.envFrom" . | nindent 12 }}
+          command:
+            - celery
+            - -A
+            - property_service.infrastructure.celery.app
+            - beat
+            - --loglevel=info
+{{- end }}

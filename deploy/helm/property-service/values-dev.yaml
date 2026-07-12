@@ -1,0 +1,35 @@
+environment: dev
+
+config:
+  appEnv: development
+  logLevel: DEBUG
+  debug: true
+  requireAuthentication: false
+
+api:
+  replicaCount: 1
+  autoscaling:
+    enabled: false
+
+workers:
+  default:
+    replicaCount: 1
+    autoscaling:
+      enabled: false
+  image:
+    replicaCount: 1
+    autoscaling:
+      enabled: false
+  import:
+    replicaCount: 1
+    autoscaling:
+      enabled: false
+
+ingress:
+  enabled: false
+
+monitoring:
+  serviceMonitor:
+    enabled: false
+  prometheusRules:
+    enabled: false

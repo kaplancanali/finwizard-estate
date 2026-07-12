@@ -1,0 +1,9 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "custom_field": { "type": "string", "maxLength": 500 },
+    "energy_consumption_kwh": { "type": "number", "minimum": 0 }
+  },
+  "additionalProperties": false
+}

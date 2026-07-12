@@ -1,0 +1,28 @@
+environment: staging
+
+config:
+  appEnv: staging
+  logLevel: INFO
+  debug: false
+  requireAuthentication: true
+
+api:
+  replicaCount: 2
+  autoscaling:
+    enabled: true
+    minReplicas: 2
+    maxReplicas: 10
+
+ingress:
+  hosts:
+    - host: property-staging.finward.com
+      paths:
+        - path: /
+          pathType: Prefix
+  tls:
+    - secretName: property-service-staging-tls
+      hosts:
+        - property-staging.finward.com
+
+dataResidency:
+  region: eu-central-1
