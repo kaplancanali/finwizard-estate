@@ -1,29 +1,17 @@
 import type { NextConfig } from "next";
 
-const BACKEND_URL = process.env.BACKEND_URL || "http://localhost:8001";
-
+/**
+ * API traffic is handled by `src/app/api/v1/[...path]/route.ts`:
+ * - proxies to BACKEND_URL when it is a public URL
+ * - otherwise serves the local demo catalog (needed on Vercel without a public API)
+ */
 const nextConfig: NextConfig = {
   images: {
     remotePatterns: [
       { protocol: "http", hostname: "localhost" },
+      { protocol: "https", hostname: "images.unsplash.com" },
       { protocol: "https", hostname: "**" },
     ],
-  },
-  async rewrites() {
-    return [
-      {
-        source: "/api/v1/:path*",
-        destination: `${BACKEND_URL}/api/v1/:path*`,
-      },
-      {
-        source: "/health",
-        destination: `${BACKEND_URL}/health`,
-      },
-      {
-        source: "/health/:path*",
-        destination: `${BACKEND_URL}/health/:path*`,
-      },
-    ];
   },
 };
 
