@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Seed property type lookup rows."""
+"""Seed property type lookup rows (covers domain PropertyType enum)."""
 
 from __future__ import annotations
 
@@ -13,10 +13,21 @@ from property_service.infrastructure.persistence.models import PropertyTypeLooku
 
 DEFAULT_TYPES = [
     ("apartment", "residential", {"en": "Apartment", "tr": "Daire"}),
+    ("villa", "residential", {"en": "Villa", "tr": "Villa"}),
+    ("residence", "residential", {"en": "Residence", "tr": "Residence"}),
+    ("detached_house", "residential", {"en": "Detached House", "tr": "Müstakil Ev"}),
     ("house", "residential", {"en": "House", "tr": "Ev"}),
     ("land", "land", {"en": "Land", "tr": "Arsa"}),
     ("commercial", "commercial", {"en": "Commercial", "tr": "Ticari"}),
     ("office", "commercial", {"en": "Office", "tr": "Ofis"}),
+    ("store", "commercial", {"en": "Store", "tr": "Dükkan"}),
+    ("warehouse", "industrial", {"en": "Warehouse", "tr": "Depo"}),
+    ("factory", "industrial", {"en": "Factory", "tr": "Fabrika"}),
+    ("industrial", "industrial", {"en": "Industrial", "tr": "Sanayi"}),
+    ("hotel", "hospitality", {"en": "Hotel", "tr": "Otel"}),
+    ("farm", "agricultural", {"en": "Farm", "tr": "Çiftlik"}),
+    ("mixed_project", "mixed_use", {"en": "Mixed Project", "tr": "Karma Proje"}),
+    ("other", "residential", {"en": "Other", "tr": "Diğer"}),
 ]
 
 

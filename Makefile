@@ -1,4 +1,4 @@
-.PHONY: install test lint run up down build migrate docker-up docker-down docker-logs helm-template
+.PHONY: install test lint run up down build migrate docker-up docker-down docker-logs helm-template seed-demo
 
 COMPOSE = docker compose -f docker/docker-compose.yml
 COMPOSE_PROD = docker compose -f docker/docker-compose.yml -f docker/docker-compose.prod.yml
@@ -26,6 +26,9 @@ build:
 
 migrate:
 	$(COMPOSE) exec api alembic upgrade head
+
+seed-demo:
+	PROPERTY_API_BASE=http://localhost:8001/api/v1 python3 scripts/seed_demo_properties.py
 
 docker-up:
 	$(COMPOSE) up -d --build

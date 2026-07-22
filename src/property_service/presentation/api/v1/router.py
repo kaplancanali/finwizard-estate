@@ -19,8 +19,9 @@ api_v1_router = APIRouter()
 
 api_v1_router.include_router(property_search.router)
 api_v1_router.include_router(bulk_operations.router)
-api_v1_router.include_router(properties.router)
+# Statistics before /properties/{id} so /statistics is not captured as a UUID path param.
 api_v1_router.include_router(property_statistics.router)
+api_v1_router.include_router(properties.router)
 api_v1_router.include_router(property_images.router)
 api_v1_router.include_router(property_documents.router)
 api_v1_router.include_router(property_history.router)

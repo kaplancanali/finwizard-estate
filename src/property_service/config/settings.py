@@ -30,6 +30,11 @@ class Settings(BaseSettings):
     jwks_url: str | None = None
     require_authentication: bool = False
 
+    # External platform APIs (filled from Identity / finward-api when available)
+    identity_base_url: str | None = None
+    finward_api_base_url: str | None = None
+    nominatim_url: str = "https://nominatim.openstreetmap.org"
+
     redis_max_connections: int = 20
     use_in_memory_cache: bool = False
 

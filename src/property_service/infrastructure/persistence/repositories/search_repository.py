@@ -4,7 +4,7 @@ from math import cos, radians
 from uuid import UUID
 
 from sqlalchemy import func, select
-from sqlalchemy.orm import noload
+from sqlalchemy.orm import noload, selectinload
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from property_service.application.dto.property_search_dto import (
@@ -15,6 +15,7 @@ from property_service.application.dto.property_search_dto import (
     PropertySearchResult,
     PropertySummary,
 )
+from property_service.domain.queries.search_criteria import PropertyStatistics
 from property_service.domain.repositories.property_search_repository import IPropertySearchRepository
 from property_service.infrastructure.persistence.mappers.search_mapper import SearchMapper
 from property_service.infrastructure.persistence.models import PropertyModel
@@ -25,9 +26,13 @@ class SqlAlchemySearchRepository(IPropertySearchRepository):
         self._session = session
 
     async def search(self, criteria: PropertySearchCriteria, tenant_id: UUID) -> PropertySearchResult:
-        stmt = select(PropertyModel).options(noload(PropertyModel.images)).where(
-            PropertyModel.tenant_id == tenant_id,
-            PropertyModel.deleted_at.is_(None),
+        stmt = (
+            select(PropertyModel)
+            .options(selectinload(PropertyModel.images), noload(PropertyModel.documents))
+            .where(
+                PropertyModel.tenant_id == tenant_id,
+                PropertyModel.deleted_at.is_(None),
+            )
         )
         filters = criteria.filters_dict
 

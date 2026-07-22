@@ -496,15 +496,35 @@ class PropertyMapper:
         m.provider_metadata = l.provider_metadata
 
     @staticmethod
-    def _sync_amenities(domain: Property, model: PropertyModel) -> None:
-        model.amenities = [
-            PropertyAmenityModel(property_id=model.id, amenity_code=a.amenity_code, value=a.value, id=a.id)
-            for a in domain.amenities
-        ]
+    def _sync_tags(domain: Property, model: PropertyModel) -> None:
+        desired = list(dict.fromkeys(domain.tags))
+        existing = {row.tag: row for row in list(model.tags)}
+        for tag, row in existing.items():
+            if tag not in desired:
+                model.tags.remove(row)
+        for tag in desired:
+            if tag not in existing:
+                model.tags.append(PropertyTagModel(property_id=model.id, tag=tag))
 
     @staticmethod
-    def _sync_tags(domain: Property, model: PropertyModel) -> None:
-        model.tags = [PropertyTagModel(property_id=model.id, tag=t) for t in domain.tags]
+    def _sync_amenities(domain: Property, model: PropertyModel) -> None:
+        desired_codes = {a.amenity_code: a for a in domain.amenities}
+        existing = {row.amenity_code: row for row in list(model.amenities)}
+        for code, row in existing.items():
+            if code not in desired_codes:
+                model.amenities.remove(row)
+            else:
+                row.value = desired_codes[code].value
+        for code, amenity in desired_codes.items():
+            if code not in existing:
+                model.amenities.append(
+                    PropertyAmenityModel(
+                        property_id=model.id,
+                        amenity_code=amenity.amenity_code,
+                        value=amenity.value,
+                        id=amenity.id,
+                    )
+                )
 
     @staticmethod
     def _sync_images(domain: Property, model: PropertyModel) -> None:

@@ -10,7 +10,7 @@ from property_service.infrastructure.geocoding.geocoding_client import Geocoding
 
 class NominatimAdapter(GeocodingClient):
     def __init__(self) -> None:
-        self._base_url = getattr(get_settings(), "nominatim_url", "https://nominatim.openstreetmap.org")
+        self._base_url = get_settings().nominatim_url
 
     async def reverse_geocode(self, latitude: float, longitude: float) -> dict[str, Any]:
         async with httpx.AsyncClient() as client:

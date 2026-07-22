@@ -28,6 +28,13 @@ class PropertyStatisticsService:
             stats = await repo.get_statistics(auth.tenant_id, group_by=group_by)
 
         payload = asdict(stats)
+        by_status = payload.get("by_status") or {}
+        # Frontend dashboard convenience fields (derived from by_status).
+        payload["total_properties"] = payload.get("total_count", 0)
+        payload["active_properties"] = int(by_status.get("active", 0)) + int(by_status.get("listed", 0))
+        payload["draft_properties"] = int(by_status.get("draft", 0))
+        payload["sold_properties"] = int(by_status.get("sold", 0))
+        payload["rented_properties"] = int(by_status.get("rented", 0))
         if self._cache and not group_by:
             await self._cache.set_statistics(auth.tenant_id, payload)
         return payload

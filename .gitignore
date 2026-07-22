@@ -45,3 +45,10 @@ celerybeat-schedule.*
 # Docker / local volumes (if ever mounted here)
 pgdata/
 miniodata/
+
+# Next.js frontend
+frontend/.next/
+frontend/out/
+frontend/node_modules/
+frontend/.env.local
+frontend/.env.*.local
