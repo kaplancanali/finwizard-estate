@@ -1,0 +1,574 @@
+{
+  "version": 1,
+  "source": "KonutEnvanter.csv",
+  "categories": [
+    {
+      "id": "location_region",
+      "title": "Konum ve Bölge Analizi",
+      "commercial": false,
+      "items": [
+        {
+          "id": "location_region__ulasim-akslarina-yakinlik",
+          "label": "Ulaşım akslarına yakınlık"
+        },
+        {
+          "id": "location_region__is-merkezlerine-erisim",
+          "label": "İş merkezlerine erişim"
+        },
+        {
+          "id": "location_region__saglik-hizmetine-ulasim",
+          "label": "Sağlık hizmetine ulaşım"
+        },
+        {
+          "id": "location_region__egitim-kurumlarina-ulasim",
+          "label": "Eğitim kurumlarına ulaşım"
+        },
+        {
+          "id": "location_region__restoran-cesitliligi",
+          "label": "Restoran çeşitliliği"
+        },
+        {
+          "id": "location_region__kafe-ve-eglence-mekanlarina-yakinlik",
+          "label": "Kafe ve eğlence mekanlarına yakınlık"
+        },
+        {
+          "id": "location_region__avm-yakinligi",
+          "label": "AVM yakınlığı"
+        },
+        {
+          "id": "location_region__hastaneye-yakinlik",
+          "label": "Hastaneye yakınlık"
+        },
+        {
+          "id": "location_region__universitelere-yakinlik",
+          "label": "Üniversitelere yakınlık"
+        },
+        {
+          "id": "location_region__mahallenin-gelir-seviyesi",
+          "label": "Mahallenin gelir seviyesi"
+        },
+        {
+          "id": "location_region__suc-oranlari-ve-guvenlik-algisi",
+          "label": "Suç oranları ve güvenlik algısı"
+        },
+        {
+          "id": "location_region__gurultu-seviyesi",
+          "label": "Gürültü seviyesi"
+        },
+        {
+          "id": "location_region__hava-kalitesi",
+          "label": "Hava kalitesi"
+        },
+        {
+          "id": "location_region__bolgedeki-projeler",
+          "label": "Bölgedeki projeler"
+        },
+        {
+          "id": "location_region__bos-daire-orani",
+          "label": "Boş daire oranı"
+        },
+        {
+          "id": "location_region__demografik-yapi",
+          "label": "Demografik yapı"
+        },
+        {
+          "id": "location_region__okul-kalitesi",
+          "label": "Okul kalitesi"
+        },
+        {
+          "id": "location_region__gelecek-10-yil-potansiyeli",
+          "label": "Gelecek 10 yıl potansiyeli"
+        },
+        {
+          "id": "location_region__belediye-yatirimlari",
+          "label": "Belediye yatırımları"
+        },
+        {
+          "id": "location_region__imar-degisiklik-riski",
+          "label": "İmar değişiklik riski"
+        },
+        {
+          "id": "location_region__otopark-problemi",
+          "label": "Otopark problemi"
+        },
+        {
+          "id": "location_region__sel-ve-su-baskini-durumu",
+          "label": "Sel ve su baskını durumu"
+        },
+        {
+          "id": "location_region__mahalle-itibari",
+          "label": "Mahalle itibarı"
+        },
+        {
+          "id": "location_region__yakin-cevre-emlak-fiyat-trendi",
+          "label": "Yakın çevre emlak fiyat trendi"
+        }
+      ]
+    },
+    {
+      "id": "macro_appreciation",
+      "title": "Makro Ekonomi ve Bölge Değer Artışı",
+      "commercial": false,
+      "items": [
+        {
+          "id": "macro_appreciation__bolge-nufus-artis-orani",
+          "label": "Bölge nüfus artış oranı"
+        },
+        {
+          "id": "macro_appreciation__ic-dis-goc-durumlari",
+          "label": "İç / dış göç durumları"
+        },
+        {
+          "id": "macro_appreciation__konut-art-talep-durumu",
+          "label": "Konut art talep durumu"
+        },
+        {
+          "id": "macro_appreciation__turizm-etkisi",
+          "label": "Turizm etkisi"
+        },
+        {
+          "id": "macro_appreciation__sanayi-etkisi",
+          "label": "Sanayi etkisi"
+        },
+        {
+          "id": "macro_appreciation__hizmet-sektoru-etkisi",
+          "label": "Hizmet sektörü etkisi"
+        },
+        {
+          "id": "macro_appreciation__kamu-istihdam-etkisi",
+          "label": "Kamu istihdam etkisi"
+        },
+        {
+          "id": "macro_appreciation__yas-ortalamasi",
+          "label": "Yaş ortalaması"
+        },
+        {
+          "id": "macro_appreciation__yeni-istihdam-potansiyeli",
+          "label": "Yeni istihdam potansiyeli"
+        },
+        {
+          "id": "macro_appreciation__mevcut-istihdam-durumu",
+          "label": "Mevcut istihdam durumu"
+        },
+        {
+          "id": "macro_appreciation__fiyat-artislari-ile-enflasyon-iliskisi",
+          "label": "Fiyat artışları ile enflasyon ilişkisi"
+        },
+        {
+          "id": "macro_appreciation__fiyat-balonu-durumu",
+          "label": "Fiyat balonu durumu"
+        },
+        {
+          "id": "macro_appreciation__bolge-karsilastirmasi",
+          "label": "Bölge karşılaştırması"
+        },
+        {
+          "id": "macro_appreciation__kentsel-donusum",
+          "label": "Kentsel dönüşüm"
+        },
+        {
+          "id": "macro_appreciation__kentsel-donusum-etkisi",
+          "label": "Kentsel dönüşüm etkisi"
+        }
+      ]
+    },
+    {
+      "id": "seismic_building",
+      "title": "Deprem, Zemin ve Yapı Kalitesi",
+      "commercial": false,
+      "items": [
+        {
+          "id": "seismic_building__bina-yasi",
+          "label": "Bina yaşı"
+        },
+        {
+          "id": "seismic_building__donemin-deprem-yonetmeligiyle-kiyas",
+          "label": "Dönemin deprem yönetmeliğiyle kıyas"
+        },
+        {
+          "id": "seismic_building__guncel-deprem-yonetmeligiyle-kiyas",
+          "label": "Güncel deprem yönetmeliğiyle kıyas"
+        },
+        {
+          "id": "seismic_building__zemin-turu",
+          "label": "Zemin türü"
+        },
+        {
+          "id": "seismic_building__dolgu-alan-riski",
+          "label": "Dolgu alan riski"
+        },
+        {
+          "id": "seismic_building__zeminin-sivilasma-riski",
+          "label": "Zeminin sıvılaşma riski"
+        },
+        {
+          "id": "seismic_building__bina-tasiyici-sistem-tipi",
+          "label": "Bina taşıyıcı sistem tipi"
+        },
+        {
+          "id": "seismic_building__kolon-kiris-duzeni",
+          "label": "Kolon kiriş düzeni"
+        },
+        {
+          "id": "seismic_building__rutubet-ve-nem-durumu",
+          "label": "Rutubet ve nem durumu"
+        },
+        {
+          "id": "seismic_building__otopark-durumu",
+          "label": "Otopark durumu"
+        },
+        {
+          "id": "seismic_building__otopark-kolon-dagilimi",
+          "label": "Otopark kolon dağılımı"
+        },
+        {
+          "id": "seismic_building__kacak-tadilat-veya-ekleme-durumu",
+          "label": "Kaçak tadilat veya ekleme durumu"
+        },
+        {
+          "id": "seismic_building__asansor-ve-ortak-alan-durumu",
+          "label": "Asansör ve ortak alan durumu"
+        },
+        {
+          "id": "seismic_building__bina-bakim-gecmisi",
+          "label": "Bina bakım geçmişi"
+        },
+        {
+          "id": "seismic_building__cati-durumu",
+          "label": "Çatı durumu"
+        },
+        {
+          "id": "seismic_building__su-tesisati",
+          "label": "Su tesisatı"
+        },
+        {
+          "id": "seismic_building__elektrik-altyapisi",
+          "label": "Elektrik altyapısı"
+        },
+        {
+          "id": "seismic_building__yangin-guvenligi",
+          "label": "Yangın güvenliği"
+        },
+        {
+          "id": "seismic_building__daire-planlama",
+          "label": "Daire planlama"
+        },
+        {
+          "id": "seismic_building__bina-oturma-durumu",
+          "label": "Bina oturma durumu"
+        },
+        {
+          "id": "seismic_building__gunes-alma-durumu",
+          "label": "Güneş alma durumu"
+        },
+        {
+          "id": "seismic_building__havalandirma-ve-hava-akisi",
+          "label": "Havalandırma ve hava akışı"
+        },
+        {
+          "id": "seismic_building__ses-yalitimi",
+          "label": "Ses yalıtımı"
+        },
+        {
+          "id": "seismic_building__binayi-yapan-sirket-z-raporu",
+          "label": "Binayı yapan şirket / Z raporu"
+        },
+        {
+          "id": "seismic_building__profesyonel-ekspertiz-raporu",
+          "label": "Profesyonel ekspertiz raporu"
+        }
+      ]
+    },
+    {
+      "id": "title_legal",
+      "title": "Tapu, Hukuk ve Resmi Kontroller",
+      "commercial": false,
+      "items": [
+        {
+          "id": "title_legal__tapu-turu",
+          "label": "Tapu türü"
+        },
+        {
+          "id": "title_legal__hisseli-yapi-ozel-durum",
+          "label": "Hisseli yapı (özel durum)"
+        },
+        {
+          "id": "title_legal__ipotek-durumu",
+          "label": "İpotek durumu"
+        },
+        {
+          "id": "title_legal__projeye-uygun-yapi-durumu",
+          "label": "Projeye uygun yapı durumu"
+        },
+        {
+          "id": "title_legal__iskan",
+          "label": "İskan"
+        },
+        {
+          "id": "title_legal__ortak-alan-isgal-durumu",
+          "label": "Ortak alan işgal durumu"
+        },
+        {
+          "id": "title_legal__satici-mulkiyet-yetkisi",
+          "label": "Satıcı mülkiyet yetkisi"
+        },
+        {
+          "id": "title_legal__aidat",
+          "label": "Aidat"
+        },
+        {
+          "id": "title_legal__aidat-borc-durumu",
+          "label": "Aidat borç durumu"
+        },
+        {
+          "id": "title_legal__belediyeye-borc-durumu",
+          "label": "Belediyeye borç durumu"
+        },
+        {
+          "id": "title_legal__site-yonetimi-dava-durumu",
+          "label": "Site yönetimi dava durumu"
+        },
+        {
+          "id": "title_legal__tahliye-riski",
+          "label": "Tahliye riski"
+        },
+        {
+          "id": "title_legal__kat-plani-ve-durumu",
+          "label": "Kat planı ve durumu"
+        },
+        {
+          "id": "title_legal__metrekare-dogrulugu",
+          "label": "Metrekare doğruluğu"
+        },
+        {
+          "id": "title_legal__dava-ve-ihtilaf-durumu",
+          "label": "Dava ve ihtilaf durumu"
+        },
+        {
+          "id": "title_legal__resmi-ekspertiz-degerlendirmesi",
+          "label": "Resmi ekspertiz değerlendirmesi"
+        }
+      ]
+    },
+    {
+      "id": "rental_cashflow",
+      "title": "Kira Getirisi ve Nakit Akışı",
+      "commercial": false,
+      "items": [
+        {
+          "id": "rental_cashflow__kira-carpani",
+          "label": "Kira çarpanı"
+        },
+        {
+          "id": "rental_cashflow__gercek-kira-degeri",
+          "label": "Gerçek kira değeri"
+        },
+        {
+          "id": "rental_cashflow__daire-karsilastirmasi",
+          "label": "Daire karşılaştırması"
+        },
+        {
+          "id": "rental_cashflow__kira-tahsilat-riski",
+          "label": "Kira tahsilat riski"
+        },
+        {
+          "id": "rental_cashflow__kredi-durumu",
+          "label": "Kredi durumu"
+        },
+        {
+          "id": "rental_cashflow__kisa-donem-kiralama-potansiyeli",
+          "label": "Kısa dönem kiralama potansiyeli"
+        },
+        {
+          "id": "rental_cashflow__beklenen-bakim-butcesi",
+          "label": "Beklenen bakım bütçesi"
+        },
+        {
+          "id": "rental_cashflow__buyuk-bakim-donguleri",
+          "label": "Büyük bakım döngüleri"
+        },
+        {
+          "id": "rental_cashflow__kiralanabilirlik-puani",
+          "label": "Kiralanabilirlik puanı"
+        },
+        {
+          "id": "rental_cashflow__daire-kullanim-verimliligi",
+          "label": "Daire kullanım verimliliği"
+        },
+        {
+          "id": "rental_cashflow__bolge-kira-artis-gecmisi",
+          "label": "Bölge kira artış geçmişi"
+        },
+        {
+          "id": "rental_cashflow__alternatif-yatirim-getirisi",
+          "label": "Alternatif yatırım getirisi"
+        },
+        {
+          "id": "rental_cashflow__satin-alma-maliyeti",
+          "label": "Satın alma maliyeti"
+        },
+        {
+          "id": "rental_cashflow__toplam-mulkiyet-degeri",
+          "label": "Toplam mülkiyet değeri"
+        },
+        {
+          "id": "rental_cashflow__aylik-odeme-gucune-gore-kira-orani",
+          "label": "Aylık ödeme gücüne göre kira oranı"
+        },
+        {
+          "id": "rental_cashflow__net-kira-verimi",
+          "label": "Net kira verimi"
+        },
+        {
+          "id": "rental_cashflow__kaldirac-orani",
+          "label": "Kaldıraç oranı"
+        },
+        {
+          "id": "rental_cashflow__pesinat-durumu",
+          "label": "Peşinat durumu"
+        },
+        {
+          "id": "rental_cashflow__krediye-uygunluk",
+          "label": "Krediye uygunluk"
+        },
+        {
+          "id": "rental_cashflow__kredi-sigortasi-etkisi",
+          "label": "Kredi sigortası etkisi"
+        },
+        {
+          "id": "rental_cashflow__ilan-suresi",
+          "label": "İlan süresi"
+        },
+        {
+          "id": "rental_cashflow__benzer-ilan-karsilastirmasi",
+          "label": "Benzer ilan karşılaştırması"
+        }
+      ]
+    },
+    {
+      "id": "commercial_location",
+      "title": "İş Yeri — Lokasyon ve Görünürlük",
+      "commercial": true,
+      "items": [
+        {
+          "id": "commercial_location__ana-cadde-cephe-uzunlugu",
+          "label": "Ana cadde cephe uzunluğu"
+        },
+        {
+          "id": "commercial_location__yaya-trafik-yogunlugu",
+          "label": "Yaya trafik yoğunluğu"
+        },
+        {
+          "id": "commercial_location__arac-trafik-yogunlugu",
+          "label": "Araç trafik yoğunluğu"
+        },
+        {
+          "id": "commercial_location__tabela-gorunurluk-acisi",
+          "label": "Tabela görünürlük açısı"
+        },
+        {
+          "id": "commercial_location__kosebasi-serefiye-avantaji",
+          "label": "Köşebaşı / şerefiye avantajı"
+        },
+        {
+          "id": "commercial_location__hedef-kitle-demografisi",
+          "label": "Hedef kitle demografisi"
+        },
+        {
+          "id": "commercial_location__rakip-isletmelere-mesafe",
+          "label": "Rakip işletmelere mesafe"
+        },
+        {
+          "id": "commercial_location__tamamlayici-isletme-sinerjisi",
+          "label": "Tamamlayıcı işletme sinerjisi"
+        },
+        {
+          "id": "commercial_location__toplu-tasimaya-uzaklik",
+          "label": "Toplu taşımaya uzaklık"
+        },
+        {
+          "id": "commercial_location__buyuk-cekim-merkezlerine-yakinlik",
+          "label": "Büyük çekim merkezlerine yakınlık"
+        },
+        {
+          "id": "commercial_location__bolgesel-guvenlik-algisi",
+          "label": "Bölgesel güvenlik algısı"
+        },
+        {
+          "id": "commercial_location__mahalle-semt-marka-degeri",
+          "label": "Mahalle / semt marka değeri"
+        }
+      ]
+    },
+    {
+      "id": "commercial_space",
+      "title": "İş Yeri — Lojistik ve Fiziksel Alan",
+      "commercial": true,
+      "items": [
+        {
+          "id": "commercial_space__net-kullanilabilir-zemin-alani",
+          "label": "Net kullanılabilir zemin alanı"
+        },
+        {
+          "id": "commercial_space__brut-net-metrekare-orani",
+          "label": "Brüt / net metrekare oranı"
+        },
+        {
+          "id": "commercial_space__tavan-yuksekligi",
+          "label": "Tavan yüksekliği"
+        },
+        {
+          "id": "commercial_space__depo-hacmi",
+          "label": "Depo hacmi"
+        },
+        {
+          "id": "commercial_space__mal-indirme-bindirme-alani",
+          "label": "Mal indirme / bindirme alanı"
+        },
+        {
+          "id": "commercial_space__otopark-kapasitesi",
+          "label": "Otopark kapasitesi"
+        },
+        {
+          "id": "commercial_space__yangin-cikislari-ve-tahliye",
+          "label": "Yangın çıkışları ve tahliye"
+        }
+      ]
+    },
+    {
+      "id": "commercial_finance_legal",
+      "title": "İş Yeri — Finansal Uygunluk ve Yasal Durum",
+      "commercial": true,
+      "items": [
+        {
+          "id": "commercial_finance_legal__aylik-net-kira",
+          "label": "Aylık net kira"
+        },
+        {
+          "id": "commercial_finance_legal__bolgesel-emsal-kira-karsilastirmasi",
+          "label": "Bölgesel emsal kira karşılaştırması"
+        },
+        {
+          "id": "commercial_finance_legal__amortisman-suresi",
+          "label": "Amortisman süresi"
+        },
+        {
+          "id": "commercial_finance_legal__sozlesme-suresi-ve-guvence",
+          "label": "Sözleşme süresi ve güvence"
+        },
+        {
+          "id": "commercial_finance_legal__tapu-niteligi",
+          "label": "Tapu niteliği"
+        },
+        {
+          "id": "commercial_finance_legal__iskan-ruhsat-ve-imar-uygunlugu",
+          "label": "İskan / ruhsat ve imar uygunluğu"
+        },
+        {
+          "id": "commercial_finance_legal__yangin-ve-deprem-yonetmeligi-uygunlugu",
+          "label": "Yangın ve deprem yönetmeliği uygunluğu"
+        }
+      ]
+    }
+  ]
+}

@@ -240,7 +240,7 @@ export function PropertyDetail({ id }: PropertyDetailProps) {
                   <CardTitle className="text-base">Market & risk analysis</CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <AnalysisPanel propertyId={id} />
+                  <AnalysisPanel property={property} />
                 </CardContent>
               </Card>
             </TabsContent>
