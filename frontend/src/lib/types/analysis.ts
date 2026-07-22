@@ -1,12 +1,19 @@
 /** Inventory-driven AI analysis report types */
 
 export type FindingStatus = "covered" | "unknown" | "risk" | "positive";
+export type EvidenceStrength = "strong" | "moderate" | "weak" | "none";
 
 export interface AnalysisFinding {
   item_id: string;
   label?: string;
   status: FindingStatus;
   note: string;
+  /** What evidence supports the conclusion */
+  evidence: string;
+  /** What still must be verified on-site / via documents */
+  required_proof: string;
+  evidence_strength: EvidenceStrength;
+  confidence: number | null;
 }
 
 export interface AnalysisCategoryResult {
@@ -15,19 +22,33 @@ export interface AnalysisCategoryResult {
   score: number | null;
   summary: string;
   findings: AnalysisFinding[];
+  coverage: {
+    total: number;
+    evaluated: number;
+    unknown: number;
+    risk: number;
+    positive: number;
+  };
 }
 
 export interface InventoryAnalysisReport {
   property_id: string;
   executive_summary: string;
   overall_score: number;
+  confidence_score: number;
+  methodology: string;
   categories: AnalysisCategoryResult[];
   risks: string[];
   opportunities: string[];
+  data_gaps: string[];
+  due_diligence: string[];
   recommendation: string;
   model: string;
   generated_at: string;
   source: "openai";
+  inventory_version: number;
+  inventory_items_total: number;
+  inventory_items_covered: number;
 }
 
 export interface AnalysisPropertySnapshot {
